@@ -1,0 +1,536 @@
+\definecolor{darkturquoise}{rgb}{0.0, 0.81, 0.82}
+
+\begin{frame}{Background}
+
+\begin{wrapfigure}{L}{0.3\textwidth}
+\centering
+\includegraphics[width=0.25\textwidth]{images/photos/gauss.jpg}
+\caption{Carl Friedrich Gauss 1777-1855}
+\end{wrapfigure} 
+Carl Friedrich Gauss was a German  number \\ theorist  who influenced many diverse fields \\ of mathematics. One of his innumerable \\ contributions to the field was the discovery \\ of the \textit{Gaussian Integers}. 
+\end{frame}
+
+\begin{frame}{Outline}
+
+This presentation will cover an introduction to the properties of the Gaussian Integers as well as one of it's subsets, the Gaussian Primes. \\
+\\ \quad \\
+1. Relation between complex numbers and Gaussian Integers. \\
+2. Abstract Algebra Concepts (divisibility, primality, GCDs)\\
+3. Gaussian Primes \\
+4. Bézouts Theorem in $\mathbf{Z}[i]$
+4. Unique Gaussian Prime Factorization \\
+5. Fermat's Sum of Two Squares 
+\end{frame}
+
+
+
+\begin{frame}{Complex Numbers}
+\begin{itemize}
+ \item<1-> Before any definition of Gaussian Integers can be provided in a comprehensive way, it is necessary to first provide a definition for Complex Numbers, as the set of Gaussian Integers form a subring of the field of Complex Numbers
+ \item<2-> The set of the complex numbers are defined as $\mathbb{C} = \{x + yi| x, y \in \mathbb{R}, i = \sqrt{-1}\}$
+ \item<3-> Here, x is considered the real component of $z$, or $Re(z)$ and y is considered the imaginary component of $z$, or $Im(z)$
+ \item<4-> Complex numbers are generally represented using an xy-coordinate system with x representing the real component and with y representing the imaginary component
+
+\end{itemize}  
+\end{frame}
+
+
+\begin{frame}{Complex Norms}
+\begin{itemize}
+     \item<1-> The norm of a complex number $z = x + yi$ is defined by $|z| = |x + yi| = \sqrt{x^2 + y^2}$ and is equivalent to the complex number's distance from the origin    
+     \item<2-> This allows for alternative representation of complex numbers using both it's norm and it's angle from the real axis, known as it's argument and represented as $Arg(z)$
+     \item<3-> It should be noted that this definition used the notation $Arg(z)$ specifically with the "a" being capitalized. This indicates that the angle is within $[0, 2\pi)$
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Laws of Complex Numbers}
+
+For all $\alpha, \beta, \gamma \in \mathbb{C}$:
+\setbeamercolor{block title}{fg = white, bg = blue}
+\begin{block}{Associativity}
+$$(\alpha+\beta)+\gamma=\alpha+(\beta+\gamma)$$
+$$(\alpha\cdot\beta)\cdot\gamma=\alpha\cdot(\beta\cdot\gamma)$$
+\end{block}
+
+\begin{block}{Commutativity}
+$$\alpha+\beta=\beta+\alpha$$
+$$\alpha\cdot\beta=\beta\cdot\alpha$$
+\end{block}
+
+\begin{block}{Distributivity}
+$$\alpha\cdot(\beta+\gamma)=\alpha\cdot\beta+\alpha\cdot\gamma$$
+\end{block}
+    
+\end{frame}
+
+
+\setbeamercolor{block title}{fg = white, bg = darkturquoise}
+\begin{frame}{Operations of Gaussian Integers}
+    \begin{block}{Definition (Gaussian Integers)}
+    \begin{center}
+        $\mathbb{Z}[i] = \{x + yi|x, y \in  \mathbb{Z}\}$
+    \end{center}
+    \end{block}
+    
+Given this as well as the fact that the set of Gaussian Integers is defined as a ring, Gaussian Integers are said to be closed under both addition and multiplication:
+    
+\setbeamercolor{block title}{fg = white, bg = blue}
+\begin{block}{Closer Under Addition}
+\begin{center}
+    $\forall \alpha, \beta \in \mathbb{Z}[i], (\alpha + \beta) \in \mathbb{Z}[i]$\\
+    
+    or more specifically:\\
+    
+    $\forall a, b, c, d \in \mathbb{R}, (a + bi) + (c + di) := (a + c) + (b + d)i$
+\end{center}
+
+\end{block}
+
+\begin{block}{Closure Under Multiplication}
+\begin{center}
+    $\forall \alpha, \beta \in \mathbb{Z}[i], \alpha \beta \in \mathbb{Z}[i]$
+    
+    or more specifically:\\
+    
+    $\forall a, b, c, d \in \mathbb{R}, (a + bi)(c + di) := (ac - bd) + (ad + bc)i$\\
+\end{center}
+\end{block}
+
+
+\end{frame}
+
+\begin{frame}{The Norm on $\mathbb{Z}[i]$}
+\setbeamercolor{block title}{fg = white, bg = darkturquoise}
+    \begin{block}{Definition (Norm on $\mathbb{Z}[i]$)}
+        \begin{center}
+            $N: \mathbb{Z}[i] \rightarrow \mathbb{Z}_\geq 0$
+        \end{center}
+        \begin{align*}
+            N(z) =& zz*\\
+            N(z) =& (a + bi)(a - bi)\\
+            N(a + bi) =& a^2 + b^2
+        \end{align*}
+    \end{block}
+
+
+The norm has a relationship with the complex modulus such that $N(z) = |z|^2$
+\end{frame}
+
+
+\begin{frame}{The Norm on $\mathbb{Z}[i]$ (cont.)}
+    
+
+Recall that The Set of Gaussian Integers is a ring such that it's norm is multiplicative
+
+
+
+\setbeamercolor{block title}{fg = white, bg = black}
+\begin{block}{Proof}
+Assume $\exist \alpha, \beta \in \mathbb{Z}[i]$ such that $\alpha = a_1 + b_1i$ and $\beta = a_2 + b_2i$, then:\\
+
+\begin{align*}
+    N(\alpha \beta) =& N((a_1 + b_1i)(a_2 + b_2i))\\
+    =& N(a_1 a_2 + a_1 b_2 i + a_2 b_1 i - b_1 b_2)\\
+    =& N((a_1 a_2 - b_1 b_2) + (a_1 b_2 + a_2 b_1)i)\\
+    =& (a_1 a_2 - b_1 b_2)^2 + (a_1 b_2 + a_2 b_1)^2\\
+    =& a_1^2 a_2^2 - \cancel{2a_1 a_2 b_1 b_2} + b_1^2 b_2^2 + a_1^2 b_2^2 + \cancel{2a_1 a_2 b_1 b_2} + a_2^2 b_1^2 \\
+    =& (a_1^2 + b_1^2)(a_2^2 + b_2^2)\\
+    =& N(\alpha)N(\beta)\\
+\end{align*}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Divisibility in $\mathbb{Z}[i]$}
+    \setbeamercolor{block title}{fg = white, bg = darkturquoise}
+    \begin{block}{Definition (Divisibility in $\mathbb{Z}[i]$)}
+        \begin{center}
+            $\forall \alpha, \beta \in \mathbb{Z}[i], (\alpha | \beta \leftrightarrow \exist \delta \in \mathbb{Z}[i] $ s.t. $ \beta = \alpha \delta)$
+        \end{center}
+    \end{block}
+    
+    \begin{block}{Definition 1 (Unit)}
+        Any Gaussian Integer $\alpha \in \mathbb{Z}[i]$ is considered to be a unit if it has a multiplicative inverse. This is to say that, i.e.:\\
+        \begin{center}
+            $\exists \beta \in \mathbb{Z}[i]$ s.t. $\alpha \beta = 1$
+        \end{center}
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Divisibility in $\mathbb{Z}[i]$ (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proposition 1}
+        A Gaussian integer $\alpha \in \mathbb{Z}[i]$ is a unit $\leftrightarrow N(\alpha) = 1 \land \alpha \in \{-1, 1, -i, i\} = \{i^k | k = 0, 1, 2, 3\}$
+    \end{block}
+    
+    \begin{block}{Proof.}
+        $(\rightarrow)$ Suppose $u\in\mathbb{Z}[i]$ is a unit. Then, there exists $x\in\mathbb{Z}[i]$ such that $ux=1.$ Taking the norm of this equation we find that $N(ux)=N(u)N(x)=1.$ Hence $N(u)=1.$\\
+        
+        $(\leftarrow)$ Conversely, suppose $u\in\mathbb{Z}[i]$ is such that $N(u)=1.$ Then, if $u=a+bi$ for $a,b\in\mathbb{Z},$ it would follow that $N(u)=N(a+bi)=a^2+b^2=1.$ 
+    \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{Divisibility in $\mathbb{Z}[i]$ (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{proof}
+    We see that the following set of ordered pairs $(a,b)$ is an exhaustive set of solutions to $a^2+b^2=1:$
+$$\{(1,0),(0,1),(-1,0),(0,-1)\}$$
+These ordered pairs correspond to the Gaussian integers $1,i,-1,-i$ respectively. Indeed, $\{\pm1,\pm i\}$ are all the units of $\mathbb{Z}[i].$ 
+    \end{proof}
+\end{frame}
+
+
+
+
+\begin{frame}{Divisibility in $\mathbb{Z}[i]$ (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = darkturquoise}
+    \begin{block}{Definition 2 (Associates)}
+        Two Gaussian Integers $\alpha, \beta \in \mathbb{Z}$ are said to be associates if $\exists \delta \in \mathbb{Z}[i]$ s.t. $\delta$ is a unit and $\alpha = \beta \delta$\\
+        By Proposition 1, this is equivalent to $\alpha = i^k\beta$
+    \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{Divisibility in $\mathbb{Z}[i]$ (Cont.)}
+    \begin{block}{Definition 3 (The Ideal)}
+        Let $\beta \in \mathbb{Z}[i].$ We define the Ideal of $\beta$ to be the set of all $\mathbb{Z}[i]$-multiples of $\beta:$\\
+$$<\beta>:=\{\beta x\mid x\in\mathbb{Z}[i]\}$$
+From this definition it follows that $\beta \mid \alpha$ if and only if $\alpha \in <\beta>.$ One also sees that if $u\in\mathbb{Z}[i]$ is a unit then $<u>=\mathbb{Z}[i].$
+    \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{Divisibility in $\mathbb{Z}[i]$ (Cont.)}
+    \begin{block}{Definition 4 (Greatest Common Divisor)}
+        Given two Gaussian integers $\alpha, \beta$ not both equal to zero, we define the set of common divisors of $\alpha, \beta$ as:
+$$\{X\in\mathbb{Z}[i]: X\mid \alpha \text{ and } X\mid\beta\}$$
+There will be an $X$ with maximal norm in this set, and it is this $X$ that we call the greatest common divisor of $\alpha$ and $\beta.$ We denote this as $\text{gcd}(\alpha, \beta)=X.$ The gcd is unique up to associates, as $\delta=\text{gcd(}\alpha,\beta)\mid \alpha,\beta$ implies that for any unit $u,$ $u\delta\mid\alpha$ and $u\delta\mid \beta$. When gcd($\alpha,\beta)=1$ we say $\alpha$ and $\beta$ are coprime. \\\\
+
+Our first theorem will establish a general "long division" of Gaussian integers which is indeed very similar to long division in $\mathbb{Z}.$
+    \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{Theorem 1 (The Divisibility Theorem)}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{The Divisor Theorem}
+        Given Gaussian integers $\alpha,
+\beta\neq 0,$ there exists $Q,R\in\mathbb{Z}[i]$ such that 
+$$\alpha=Q\beta + R \text{  and  } N(R)\leq \frac{N(\beta)}{2}$$\\
+    \end{block}
+    \begin{block}{Proof}
+        \begin{proofs}
+            We begin by performing the following division in $\mathbb{C}:$
+$$\frac{\alpha}{\beta} =x+iy$$
+Where $x,y\in\mathbb{R}.$ In constructing the desired quotient $\alpha=Q\beta +R$ we choose integers $m,n$ such that:
+$$\mid x-m\mid \leq \frac{1}{2}$$
+        \end{proofs}
+    \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{The Divisibility Theorem (Cont.)}
+\setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proof}
+    also
+$$\mid y-n\mid \leq \frac{1}{2}.$$
+        We can certainly find such an $m$ and $n$ since every real number is at most distance $\frac{1}{2}$ from the nearest integer. This choice of $m,n$ yields:
+$$N(x-m+i(y-n))=(x-m)^2+(y-n)^2\leq (\frac{1}{2})^2+(\frac{1}{2})^2=\frac{1}{2}.$$
+    \end{block}
+\end{frame}
+
+
+
+
+\begin{frame}{The Divisibility Theorem (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proof}
+        Setting $Q=m+in$ and $R=\beta(x-m+i(y-n))$ gives the desired quotient since:
+            \begin{align*}
+                \beta Q+R =& \beta(m+in)\\ +\beta(x-m+i(y-n))\\
+                =& \beta(m-m+in-in+x+iy)\\ =& \beta(x+iy)\\
+                =& a.
+            \end{align*}
+    Where the last equality follows from $\frac{\alpha}{\beta}=x+iy$. \\
+    \end{block}
+w\end{frame}
+
+
+
+
+\begin{frame}{The Divisibility Theorem (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{proof}
+It remains to show that the remainder $R$ has the desired norm $\leq \frac{N(\beta)}{2}.$\\
+This follows from the calculation:
+$$N(R)=N(\beta)N(x-m+i(y-n))=N(\beta)((x-m)^2+(y-n)^2)\leq \frac{N(\beta)}{2}$$
+Proving Theorem 1.
+    \end{proof}
+    
+Notice that unlike the analog of this theorem in $\mathbb{Z},$ the choice of $Q,R$ is not guaranteed to be unique. One can impose additional restrictions on the remainder to secure uniqueness. \\\\
+With these definitions and results, we may define the notion of primality in $\mathbb{Z}[i].$ \\
+\end{frame}
+
+
+
+\begin{frame}{Gaussian Primes}
+    In order to avoid ambiguity in the terms "integer" and "prime", we provide clarification in Definition 5:\\
+    \setbeamercolor{block title}{fg = white, bg = darkturquoise}
+    \begin{block}{Definition 5 (Rational Integer and Rational Prime)}
+         A rational integer is simply an element of $\mathbb{Z}.$ A prime in $\mathbb{Z}$ is called a rational prime. \\\\
+    \end{block}
+    \begin{block}{Definition 6 (Trivial Factorization)}
+        Let $\gamma \in\mathbb{Z}[i].$ Suppose $\gamma$ factors in $\mathbb{Z}[i]$ as $\gamma=\alpha \beta.$ This factorization is called trivial when one of $\alpha$ or $\beta$ is a unit. In this case, one notes that the other factor is associated to $\gamma.$\\\\
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Gaussian Primes (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = darkturquoise}
+    \begin{block}{Definition 7 (Gaussian Prime)}
+        A Gaussian prime $\pi$ is a Gaussian integer which cannot be written as the product of two non units. That is, if we have a factorization $$\pi = \alpha \beta \in\mathbb{Z}[i],$$
+then $\alpha$ is a unit and $\beta$ is associate to $\pi.$ Equivalently, $\pi$ cannot be written as the product of two Gaussian integers, each smaller in norm than $\pi,$ and $\pi$ has no non trivial factorization.\\\\
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Gaussian Primes (Cont.)}
+    \begin{block}{Definition 7 (Gaussian Prime)}
+        There are a few immediately interesting observations about primes in $\mathbb{Z}[i].$ For instance, the integers $2$ and $5$ are rational primes, yet in $\mathbb{Z}[i],$ these integers have the non trivial factorizations:
+$$(1+i)(1-i)=2$$
+$$(2+i)(2-i)=5,$$
+and so neither $2$ nor $5$ are Gaussian primes. 
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Gaussian Primes (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = darkturquoise}
+    \begin{block}{Definition 7 (Gaussian Prime)}
+    Notice that each of the factors is smaller in norm than the product, and neither factor is a unit. We will come to see that $p$ a rational prime is also a Gaussian prime if and only if $p\equiv 3$ (mod $4).$ Furthermore, one notes that $(1+i)$ and $(2+i)$ are Gaussian primes with a direct application of Proposition 2, shown below. 
+The following propositions will be useful in our study of the Gaussian primes:\\\\
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Gaussian Primes (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proposition 2}
+        Let $\alpha,\beta \in\mathbb{Z}[i].$ If $\beta \mid \alpha$ then $N(\beta)\mid N(\alpha).$\\
+    \end{block}
+    \begin{proof}
+        If $\beta \mid \alpha$ then for some $X\in\mathbb{Z}[i]$ we have $X\beta=\alpha.$ Evaluating the norm on this equation gives:
+$$N(\alpha)=N(X)N(\beta)$$
+Which implies that $N(\beta)\mid N(\alpha)$ as required. \\\\
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}{Gaussian Primes (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proposition 3}
+        If $z\in\mathbb{Z}[i]$ and $N(z)=p,$ a rational prime, then $z$ is a Gaussian prime.\\
+    \end{block}
+    \begin{block}{Proof.}
+        \begin{proofs}
+        We take a factorization of $z$ as a product of two Gaussian integers:
+$$z=\alpha \beta,$$
+for some $\alpha,\beta \in\mathbb{Z}[i].$ By the previous Proposition we have: $N(\alpha)\mid N(z)=p,$ and since $p$ is a rational prime, it follows that either $N(\alpha)=1$ or $N(\alpha)=p.$ If $N(\alpha)=1$ then by Proposition 1, $\alpha$ is a unit and so $z$ is a Gaussian prime. On the other hand, if $N(\alpha)=p$ then $N(\beta)=1$ and thus $\beta$ is a unit. 
+    \end{proofs}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Gaussian Primes (Cont.)}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{proof}
+        Since any factorization of $z$ includes a unit, we deduce that $z$ is indeed a Gaussian prime, as required. \\\\
+Our next theorem gives a helpful representation of the gcd of two Gaussian integers. This is the analog of "Bézout's Theorem" in number theory. \\\\
+    \end{proof}
+\end{frame}
+
+
+\begin{frame}{Bézout’s Theorem}
+    Our next theorem gives a helpful representation of the gcd of two Gaussian integers. This is the analog of "Bézout's Theorem" in number theory. 
+    \begin{block}{Definition (Bézouts Theorem in $\mathbf{Z}[i]$}
+    Let $\delta\in\mathbb{Z}[i]$ be a greatest common divisor of $\alpha,\beta\in\mathbb{Z}[i].$ Then, there exists $x,y\in\mathbb{Z}[i]$ such that $$\alpha x+\beta y=\delta.$$\\
+    \end{block}
+
+\end{frame}
+
+
+\begin{frame}{Bézouts Theorem in $\mathbf{Z}[i]$}
+    \begin{block}{Definition (Bézouts Theorem in $\mathbf{Z}[i]$}
+    Let $\delta\in\mathbb{Z}[i]$ be a greatest common divisor of $\alpha,\beta\in\mathbb{Z}[i].$ Then, there exists $x,y\in\mathbb{Z}[i]$ such that $$\alpha x+\beta y=\delta.$$\\
+    \end{block}
+    
+    \setbeamercolor{block text}{fg = white, bg = black}
+    \begin{proof}
+    We consider the set $S:$
+$$S:=\{\alpha x+\beta y \mid x,y\in\mathbb{Z}[i] \text{ and } N(\alpha x+\beta y)>0\}$$
+There is an element in this set with the smallest norm (there may be multiple elements with the smallest norm -- in this case, we select one of them), call it $d.$ Since $d\in S,$ we can write:
+$d=\alpha x_0 +\beta y_0,$ for some $x_0,y_0\in\mathbb{Z}[i].$\\
+    \end{proof}
+\end{frame}
+
+
+
+\begin{frame}{Bézouts Theorem in $\mathbf{Z}[i]$}
+    \setbeamercolor{block text}{fg = white, bg = black}
+    \begin{block}{Proof}
+    Claim 1: $d\mid \alpha$ and $d\mid \beta.$\\
+Proof of Claim: Using Theorem 1 we preform this division in $\mathbb{Z}[i]:$\\
+$$\alpha=dQ+R \text{ where Q,R} \in\mathbb{Z}[i] \text{ and } 0\leq N(R)\leq\frac{N(d)}{2}$$
+This yields that:
+$$R=\alpha -dQ=\alpha(1-Qx_0)+\beta(-y_0 Q)$$
+and thus if $N(R)>0,$ then $R$ would be an element of $S.$ However, $R$ cannot be an element of $S$ since $N(R)<N(d)$ and $d$ has minimal norm. Hence, $N(R)=0$ and thus $R=0.$ We have found that $\alpha =dQ$ and so $d\mid \alpha.$ An identical argument yields that $d\mid\beta.$ This concludes the proof of Claim 1.\\
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Bézouts Theorem in $\mathbf{Z}[i]$}
+
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proof}
+    Hence $d$ is a common divisor of $\alpha, \beta.$ Additionally, since:
+$$d=\alpha x_0+\beta y_0$$
+we see that any common divisor of $\alpha,\beta$ is also a divisor of $d.$ This proves that gcd$(\alpha,\beta)=d=\delta,$ and setting $X=x_0, Y=y_0$ we get:
+$$\text{gcd}(\alpha, \beta)=\delta = \alpha X+\beta Y$$
+as required to show Bézouts Theorem holds in $\mathbf{Z}[i]$. $\square$\\\\
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Generalized Fundamental Theorem of Arithmetic}
+    We  now  ask  whether  the  Fundamental  Theorem  of Arithmetic  can  be  generalized  to  the Gaussian integers. Indeed,  one  can  assert  a  suitable generalization  of  the  Fundamental Theorem  of Arithmetic  in $\mathbf{Z}[i]$. To prove this important fact, we will need the following Proposition:
+    
+    \setbeamercolor{blck title}{fg = white, bg = black}
+    \begin{block}{Proposition}
+    Let $\pi$ be a Gaussian prime and $z_i\in\mathbb{Z}[i].$ If $\pi\mid z_1 \ldots z_n$ for $n\geq 1,$ then $\pi\mid z_j$ for some $j\in\{1,\ldots,n\}$.
+    \end{block}
+\end{frame}
+
+\setbeamercolor{block title}{fg = white, bg = black}
+\begin{frame}{Proposition}
+\setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proposition}
+    Let $\pi$ be a Gaussian prime and $z_i\in\mathbb{Z}[i].$ If $\pi\mid z_1 \ldots z_n$ for $n\geq 1,$ then $\pi\mid z_j$ for some $j\in\{1,\ldots,n\}$.
+    \end{block}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proof}
+    We proceed with induction. When $n=1,2$ the result follows by Corollary 2. Assume that Proposition 4 is true for all $k$ with $2<k<n.$ Next we show the result is true for $n.$ Suppose that $\pi\mid z_1\ldots z_n.$ By Corollary 2, either $\pi\mid z_1$ or $\pi\mid z_2\ldots z_n.$ If $\pi\mid z_1$ then we are done. If $\pi\mid z_2\ldots z_n,$ then we have a prime dividing a product of $n-1$ terms. Since the number of terms in the product is less than $n,$ we can apply the inductive hypothesis to find that $\pi \mid z_j$ for some $j\in\{2,\ldots, n\}.$ So if $\pi\mid z_1 \ldots z_n$ for $n\geq 1,$ then $\pi\mid z_j$ for some $j\in\{1,\ldots,n\}$. 
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Unique Gaussian Prime Factorization}
+    An interesting application of the theorems and definitions we have discussed in this presentation is Unique Gaussian Prime Factorization. 
+    
+    \setbeamercolor{block title}{fg = white, bg = blue}
+    \begin{block}{Theorem - Unique Gaussian Prime Factorization}
+ A Gaussian integer $\alpha$ can be written uniquely as a product of Gaussian primes up to a reordering of the factors and multiplication by a unit. That is:
+$$\alpha = u\prod_{i=1}^{n}\pi_i^{\gamma_i}$$
+is a unique expression where $u$ is a unit, $\pi_i$ for $i\in\{1,\ldots,n\}$ are distinct (non associate) Gaussian primes, and $n,\gamma_i$ are non-negative integers.
+
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Unique Gaussian Prime Factorization}
+There are two steps to prove the Unique Gaussian Prime Factorization theorem.
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proposition 1}
+ We first prove that such a prime factorization exists, then we show that it is essentially unique.
+    \end{block}
+\end{frame}
+
+\begin{frame}{Unique Gaussian Prime Factorization Proof}
+    \setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proof (Existence)}
+We use induction on the norm of $\alpha.$ For the base case, note that if $N(\alpha)=1$ then $\alpha\in\{\pm 1,\pm i\}$ is written as the empty product of primes times the unit $\alpha.$ Suppose that all Gaussian integers $z$ with $1<N(z)<m$ have prime factorizations. We show that also $\alpha$ with $N(\alpha)=m$ has a prime factorization. If $\alpha$ is a Gaussian prime then we have its prime factorization as simply $\alpha.$ Hence, we may assume $\alpha$ is not a Gaussian prime. But this implies there is a nontrivial factorization:
+$$\alpha = XY \text{ for some } X,Y\in\mathbb{Z}[i]$$
+\end{block}
+\end{frame}
+
+\begin{frame}{Unique Gaussian Prime Factorization Proof}
+\setbeamercolor{block title}{fg = white, bg = black}
+\begin{block}{Proof (Existence)}
+Applying the norm, we find that $N(X),N(Y)<N(\alpha)=m,$ and thus we can apply the inductive hypothesis to both $X$ and $Y$ to find that:
+$$X=u\prod_{i=1}^{r}\pi_i \text{   and      }Y=u'\prod_{j=1}^{s}\rho_j$$
+for Gaussian primes $\pi_i, \rho_j$ and units $u,u'.$ Hence we get that:
+$$\alpha=uu'\prod_{i=1}^{r}\pi_i\prod_{j=1}^{s}\rho_j$$
+Showing that $\alpha$ can be written as a product of primes. By induction, the Existence claim follows. \\
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Unique Gaussian Prime Factorization Proof}
+\setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proof (Uniqueness)}
+    Assume that $\alpha$ is a Gaussian integer which can be expressed as a product of two different collections of primes. That is:
+$$\alpha =\pi_1\ldots\pi_k=\rho_1\ldots\rho_\ell$$
+where $\{\overline{\pi_i}\mid 1\leq i\leq k\}\neq\{\overline{\rho_j} \mid 1\leq j\leq \ell\}$ and all of $\pi_i,\rho_j$ are Gaussian primes. Further assume that among the Gaussian integers which have two different prime factorizations, $\alpha$ has the smallest norm (we choose $\alpha$ to have minimal norm even if the choice is not unique). 
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}{Unique Gaussian Prime Factorization Proof}
+\setbeamercolor{block title}{fg = white, bg = black}
+\begin{block}{Proof (Uniqueness)}
+Thus we can form a new Gaussian integer called $\beta$ according to:
+$$\beta := \frac{\alpha}{\pi_1} =\pi_2\ldots\pi_k=\frac{\rho_1\ldots\rho_\ell}{\pi_1}$$
+From this we find that $\pi_1 \mid \rho_1\ldots\rho_\ell,$ and so applying Proposition 4 gives: $\pi_1\mid \rho_j$ for some $j\in\{1,\ldots,\ell\}.$ Using a suitable renumbering, we can assert that $\pi_1\mid\rho_1.$ Then we know that $\{\overline{\pi_2},\ldots \overline{\pi_k}\}\neq\{\overline{\rho_2},\dots,\overline{\rho_{\ell}}\}, $ and so $\beta$ has two different prime factorizations:
+$$\beta = \pi_2\ldots \pi_k = \rho_2 \ldots \rho_{\ell}$$\\
+ Noting that $N(\beta)=\frac{N(\alpha)}{N(\pi_1)}<N(\alpha)$  we encounter a contradiction regarding the minimality of $\alpha,$ since we found a Gaussian integer $\beta$ smaller than $\alpha$ which has two different prime factorizations. 
+    \end{block}
+\end{frame}
+
+\begin{frame}{Fermat’s Sum of Two Squares}
+    Another interesting application of the theorems and definitions we have discussed in this presentation is Fermat’s Sum of Two Squares. With these facts, we can state and prove Fermat’s Theorem on the sum of two squares, a theorem that, without the use of the Unique factorization of the Gaussian integers, is harder to prove.
+    
+    \setbeamercolor{block title}{fg = white, bg = blue}
+    \begin{block}{Fermat’s Sum of Two Squares}
+    Let $p$ be an odd prime. Then, there exists integers $x,y$ such that $x^2+y^2=p$ if and only if $p\equiv 1 \pmod 4.$\\
+    \end{block}
+\end{frame}
+
+\begin{frame}{Fermat’s Sum of Two Squares}
+\setbeamercolor{block title}{fg = white, bg = black}
+    \begin{block}{Proof ($\rightarrow$)} One finds by squaring the numbers $\{0,1,2,3\}$ and reducing modulo $4$ that $0$ and $1$ are the only possible residues produced by squaring an integer modulo 4. Assume $x^2+y^2=p$ for some integers $x,y.$  Reducing this equation modulo 4 gives: $$x^2+y^2\equiv p \equiv \pm 1 \pmod 4$$ But since $x^2+y^2$ can only ever be congruent to one of $0,1,2$ modulo 4, we deduce that $p\not\equiv 3 \pmod 4$ and hence $p\equiv 1 \pmod 4.$\\
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Fermat’s Sum of Two Squares}
+\setbeamercolor{block title}{fg = white, bg = black}
+\begin{block}{Proof ($\leftarrow$)}
+    Assume $p\equiv 1 \pmod 4.$ From Proposition 6 we know that there exists an integer $m$ such that $p\mid m^2+1.$ We note that though $p\nmid m+i$ and $p\nmid m-i,$ $p$ does in fact divide the product $(m+i)(m-i)=m^2+1.$ By Proposition 7, we know that $p$ cannot be a Gaussian prime. Thus, by Theorem 3, $p$ has a Gaussian prime factorization:  $$p=\prod_{i=1}^{n} \pi_i,$$ where each of the $\pi_i$ are Gaussian primes. Also: $$N(p)=p^2=\prod_{i=1}^{n} N(\pi_i)$$
+\end{block}
+\end{frame}
+
+\begin{frame}{Fermat’s Sum of Two Squares}
+\setbeamercolor{block title}{fg = white, bg = black}
+\begin{block}{Proof ($\leftarrow$)}
+$$N(p)=p^2=\prod_{i=1}^{n} N(\pi_i)$$
+This in turn implies that each $\pi_i$ has $N(\pi_i)=p$ and thus $n=2.$ Let $\pi_1=x+iy\in\mathbb{Z}[i].$ Then we have that: $$p=N(\pi_1)=(x+iy)(x-iy)=x^2+y^2$$
+and thus we have written the prime $p\equiv 1 \pmod 4$ as a sum of two squares, proving the theorem. 
+    \end{block}
+\end{frame}
