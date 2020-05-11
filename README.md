@@ -1,6 +1,6 @@
 # Gaussian-Integers
 ### Requirements
-  * Miktex
+  * Miktex (anything that supports LaTeX)
   * Texstudio
   
 ### Definition
